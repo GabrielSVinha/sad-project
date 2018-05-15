@@ -20,7 +20,7 @@ CREATE TABLE TerritoryDimension (
 	territoryId INTEGER,
 	territoryDescription VARCHAR(70),
 	regionDescription VARCHAR(70),
-	PRIMARY KEY (dateId)
+	PRIMARY KEY (territoryId)
 );
 
 CREATE TABLE ShipperDimension (
@@ -40,7 +40,7 @@ CREATE TABLE SupplierDimension (
 	fax VARCHAR(10),
 	homePage VARCHAR(70),
 	PRIMARY KEY (supplierId),
-	FOREIGN KEY addressId REFERENCES AddressDimension(addressId)
+	FOREIGN KEY (addressId) REFERENCES AddressDimension(addressId)
 );
 
 
@@ -62,7 +62,7 @@ CREATE TABLE ProductDimension (
 );
 
 CREATE TABLE EmployeeDimension (
-	emplyeeId INTEGER,
+	employeeId INTEGER,
 	territoryId INTEGER,
 	firstName VARCHAR(70),
 	lastName VARCHAR(70),
@@ -73,7 +73,7 @@ CREATE TABLE EmployeeDimension (
 	homePhone VARCHAR(10),
 	extension VARCHAR(70),
 	PRIMARY KEY (employeeId)
-	FOREIGN KEY territoryId REFERENCES TerritoryDimension(territoryId)
+	FOREIGN KEY (territoryId) REFERENCES TerritoryDimension(territoryId)
 );
 
 CREATE TABLE CustomerDimension(
@@ -83,7 +83,7 @@ CREATE TABLE CustomerDimension(
 	contactName VARCHAR(70),
 	contactTitle VARCHAR(70),
 	PRIMARY KEY (customerId),
-	FOREIGN KEY addressId REFERENCES AddressDimension(addressId)
+	FOREIGN KEY (addressId) REFERENCES AddressDimension(addressId)
 );
 
 CREATE TABLE OrderFact (
@@ -108,7 +108,7 @@ CREATE TABLE OrderFact (
 	FOREIGN KEY supplierId REFERENCES SupplierDimension(supplierId),
 	FOREIGN KEY addressId REFERENCES AddressDimension(addressId),
 	FOREIGN KEY customerId REFERENCES CustomerDimension(customerId),
-	FOREIGN KEY shipperId REFERENCES SupplierDimension(shipperId),
+	FOREIGN KEY shipperId REFERENCES ShipperDimension(shipperId),
 	FOREIGN KEY productId REFERENCES ProductDimension(productId)
 );
 
