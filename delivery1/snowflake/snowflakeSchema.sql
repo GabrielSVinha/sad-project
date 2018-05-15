@@ -1,6 +1,7 @@
 CREATE TABLE RegionDimension (
     regionId INTEGER,
-    regionDescription VARCHAR(70)
+    regionDescription VARCHAR(70),
+	PRIMARY KEY (regionId)
 );
 
 CREATE TABLE TerritoryDimension (
@@ -12,7 +13,7 @@ CREATE TABLE TerritoryDimension (
 );
 
 CREATE TABLE EmployeeDimension (
-	emplyeeId INTEGER,
+	employeeId INTEGER,
 	territoryId INTEGER,
 	firstName VARCHAR(70),
 	lastName VARCHAR(70),
@@ -47,17 +48,6 @@ CREATE TABLE ShipperDimension (
 	PRIMARY KEY (shipperId)
 );
 
-CREATE TABLE ProductDimension (
-	productId INTEGER,
-	productDetailId INTEGER,
-	supplierId INTEGER,
-	categoryId INTEGER,
-	PRIMARY KEY (productId),
-	FOREIGN KEY (productDetailId) REFERENCES ProductDetailsDimension(productDetailId),
-	FOREIGN KEY (supplierId) REFERENCES SuppliersDimension(supplierId),
-	FOREIGN KEY (categoryId) REFERENCES CategoryDimension(categoryId)
-);
-
 CREATE TABLE ProductDetailsDimension (
 	productDetailId INTEGER,
 	productName VARCHAR(20),
@@ -84,12 +74,23 @@ CREATE TABLE SupplierContactDimension (
     PRIMARY KEY (contactId),
 );
 
-CREATE TABLE SuppliersDimension (
+CREATE TABLE SupplierDimension (
 	supplierId INTEGER,
 	companyName VARCHAR(20),
 	supplierContactId INTEGER,
 	PRIMARY KEY (supplierId),
-	FOREIGN KEY (supplierContactId) REFERENCES SuppliersContactDimension(supplierContactId)
+	FOREIGN KEY (supplierContactId) REFERENCES SupplierContactDimension(supplierContactId)
+);
+
+CREATE TABLE ProductDimension (
+	productId INTEGER,
+	productDetailId INTEGER,
+	supplierId INTEGER,
+	categoryId INTEGER,
+	PRIMARY KEY (productId),
+	FOREIGN KEY (productDetailId) REFERENCES ProductDetailsDimension(productDetailId),
+	FOREIGN KEY (supplierId) REFERENCES SupplierDimension(supplierId),
+	FOREIGN KEY (categoryId) REFERENCES CategoryDimension(categoryId)
 );
 
 CREATE TABLE OrderFact (
