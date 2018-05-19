@@ -72,7 +72,7 @@ CREATE TABLE EmployeeDimension (
 	hireDate DATE,
 	homePhone VARCHAR(10),
 	extension VARCHAR(70),
-	PRIMARY KEY (employeeId)
+	PRIMARY KEY (employeeId),
 	FOREIGN KEY (territoryId) REFERENCES TerritoryDimension(territoryId)
 );
 
@@ -103,12 +103,12 @@ CREATE TABLE OrderFact (
 	shipPostalCode VARCHAR(10), --2
 	shipCountry VARCHAR(70),
 	PRIMARY KEY (orderId),
-	FOREIGN KEY dateId REFERENCES DateDimension(dateId),
-	FOREIGN KEY employeeId REFERENCES EmployeeDimension(employeeId),
-	FOREIGN KEY supplierId REFERENCES SupplierDimension(supplierId),
-	FOREIGN KEY addressId REFERENCES AddressDimension(addressId),
-	FOREIGN KEY customerId REFERENCES CustomerDimension(customerId),
-	FOREIGN KEY shipperId REFERENCES ShipperDimension(shipperId),
-	FOREIGN KEY productId REFERENCES ProductDimension(productId)
+	FOREIGN KEY (dateId) REFERENCES DateDimension(dateId),
+	FOREIGN KEY (employeeId) REFERENCES EmployeeDimension(employeeId),
+	FOREIGN KEY (supplierId) REFERENCES SupplierDimension(supplierId),
+	FOREIGN KEY (addressId) REFERENCES AddressDimension(addressId),
+	FOREIGN KEY (customerId) REFERENCES CustomerDimension(customerId),
+	FOREIGN KEY (shipperId) REFERENCES ShipperDimension(shipperId),
+	FOREIGN KEY (productId) REFERENCES ProductDimension(productId)
 );
 
