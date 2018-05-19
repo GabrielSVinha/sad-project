@@ -71,7 +71,7 @@ CREATE TABLE SupplierContactDimension (
     supplierContactId INTEGER,
     supplierContactName VARCHAR(70),
 	supplierContactTitle VARCHAR(70),
-    PRIMARY KEY (contactId),
+    PRIMARY KEY (supplierContactId),
 );
 
 CREATE TABLE SupplierDimension (
